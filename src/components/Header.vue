@@ -3,19 +3,47 @@ import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
+  <header class="header">
+    <div>
+      <a
+        href="#"
+        class="header__logo"
+        >Blog App</a
+      >
+    </div>
     <nav>
-      <ul>
-        <li><strong>Blog App</strong></li>
-      </ul>
-      <ul>
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/about">About</RouterLink></li>
-      </ul>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/blog">Blog</RouterLink>
+      <RouterLink to="/contact">Contact</RouterLink>
     </nav>
   </header>
 
   <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  background: #ffffff10;
+  border-bottom: 1px solid #ffffff2d;
+}
+
+.header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+</style>
