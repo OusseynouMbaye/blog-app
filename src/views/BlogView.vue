@@ -3,7 +3,7 @@
     <h1>Blog</h1>
     <div v-if="status === 'error'">Impossible de charger les articles</div>
     <Grid
-      :witdh="300"
+      :width="300"
       v-else
       :aria-busy="status === 'loading'"
     >
