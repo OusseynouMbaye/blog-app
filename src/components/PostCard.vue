@@ -32,6 +32,9 @@ const thumbnail = computed(
   /* border: 1px solid #ccc; */
   /* padding: 1rem; */
   align-self: flex-start;
+  /* border: 1px solid red; */
+  border-radius: 30px;
+  overflow: hidden;
 }
 .post-card a {
   text-decoration: none;
@@ -47,8 +50,8 @@ const thumbnail = computed(
 }
 
 .post-card img:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease-in-out;
+  /* transform: scale(1.05);
+  transition: transform 0.3s ease-in-out; */
 }
 
 .post-card h2 {

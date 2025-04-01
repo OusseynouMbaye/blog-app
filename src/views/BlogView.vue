@@ -2,7 +2,8 @@
   <div class="container">
     <h1>Blog</h1>
     <div v-if="status === 'error'">Impossible de charger les articles</div>
-    <div
+    <Grid
+      :witdh="300"
       v-else
       :aria-busy="status === 'loading'"
     >
@@ -11,13 +12,14 @@
         :key="post.id"
         :post="post"
       />
-    </div>
+    </Grid>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import PostCard from '@/components/PostCard.vue';
+import Grid from '@/components/Grid.vue';
 const status = ref('loading');
 const posts = ref([]);
 
