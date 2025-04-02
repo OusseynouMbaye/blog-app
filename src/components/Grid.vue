@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="grid"
-    :style="gridWidth"
-  >
+  <div class="grid" :style="gridWidth">
     <slot />
   </div>
 </template>
@@ -26,7 +23,8 @@ const gridWidth = computed(() => ({
   grid-template-columns: repeat(auto-fill, minmax(var(--width), 1fr));
   gap: 1rem;
 }
-.grid > * {
+
+.grid>* {
   margin: 0;
   height: 100%;
 }
