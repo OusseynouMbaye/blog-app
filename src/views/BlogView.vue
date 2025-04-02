@@ -12,6 +12,7 @@
         :key="post.id"
         :post="post"
       />
+      <!-- test -->
     </Grid>
   </div>
 </template>
@@ -29,7 +30,7 @@ onMounted(() => {
       if (r.ok) {
         return r.json();
       }
-      throw new Error('Failed to fetch posts');
+      throw new Error('Échec du chargement des articles');
     })
     .then((data) => {
       posts.value = data;

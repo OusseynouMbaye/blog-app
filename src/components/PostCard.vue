@@ -11,7 +11,6 @@
       <a href="#">{{ post.title }}</a>
     </h2>
     <p>{{ post.body }}</p>
-    <!-- <p>{{ post.date }}</p> -->
   </article>
 </template>
 
@@ -32,13 +31,11 @@ const thumbnail = computed(
   /* border: 1px solid #ccc; */
   /* padding: 1rem; */
   align-self: flex-start;
-  /* border: 1px solid red; */
   border-radius: 30px;
   overflow: hidden;
 }
 .post-card a {
   text-decoration: none;
-  /* color: inherit; */
 }
 .post-card img {
   width: calc(100% + 2 * var(--pico-block-spacing-horizontal));
