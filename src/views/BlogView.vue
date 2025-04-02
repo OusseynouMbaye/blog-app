@@ -2,26 +2,14 @@
   <div class="container">
     <h1>Blog</h1>
     <div v-if="status === 'error'">Impossible de charger les articles</div>
-    <Grid
-      :width="300"
-      v-else
-      :aria-busy="status === 'loading'"
-    >
-      <PostCard
-        v-for="post in posts"
-        :key="post.id"
-        :post="post"
-      />
-    </Grid>
+    <div v-else :aria-busy="status === 'loading'">
+      <Grid>
+        <PostCard v-for="post in posts" :key="post.id" :post="post" />
+      </Grid>
+    </div>
     <!-- page suivante hide button si page > 1  -->
-    <div
-      v-if="status === 'idle'"
-      class="pagination"
-    >
-      <button
-        @click="page--"
-        :disabled="page === 1"
-      >
+    <div class="pagination">
+      <button @click="page--" :disabled="page === 1">
         page précédente
       </button>
       <button @click="page++">page suivante</button>
@@ -40,6 +28,7 @@ const page = ref(1);
 watch(
   page,
   () => {
+    posts.value = [];
     status.value = 'loading';
     fetch(
       'https://jsonplaceholder.typicode.com/posts?_limit=2&_page=' + page.value
@@ -65,8 +54,10 @@ watch(
 
 <style scoped>
 .pagination {
+  margin-top: 2rem;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 </style>
