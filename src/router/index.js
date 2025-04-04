@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import BlogView from '../views/BlogView.vue';
 import NotFoundView from '../views/NotFoundView.vue';
+// import BlogSpecificView from '../views/BlogSpecific.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -19,6 +20,12 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
+    },
+    {
+      path: '/blog/:id',
+      // name: 'blog-specific',
+      // component: BlogSpecificView,
+      component: () => import('../views/BlogSpecific.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
