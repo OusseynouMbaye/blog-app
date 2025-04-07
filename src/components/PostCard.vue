@@ -1,11 +1,11 @@
 <template>
   <article class="post-card">
-    <a :href="`/blog/${post.id}`">
+    <a :href="link">
       <img :src="thumbnail" :alt="post.title" />
     </a>
 
     <h2>
-      <a :href="`/blog/${post.id}`">{{ post.title }}</a>
+      <a :href="link">{{ post.title }}</a>
     </h2>
     <p>{{ post.body }}</p>
     <!-- <p>{{ post.date }}</p> -->
@@ -17,6 +17,8 @@ import { computed } from 'vue';
 const props = defineProps({
   post: Object,
 });
+
+const link = computed(() => `/blog/${props.post.id}`);
 
 const thumbnail = computed(
   () => `https://picsum.photos/id/${props.post.id}/280/180`
