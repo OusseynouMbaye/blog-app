@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router';
-</script>
-
 <template>
   <header class="header">
     <div>
@@ -15,12 +11,15 @@ import { RouterLink, RouterView } from 'vue-router';
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/blog">Blog</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
+      <RouterLink to="/post"></RouterLink>
     </nav>
   </header>
 
-  <RouterView />
+  <!-- <RouterView /> -->
 </template>
-
+<script setup>
+import { RouterLink, RouterView } from 'vue-router';
+</script>
 <style scoped>
 .header {
   display: flex;

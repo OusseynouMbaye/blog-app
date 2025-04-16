@@ -1,11 +1,14 @@
 <template>
   <article class="post-card">
-    <a :href="link">
-      <img :src="thumbnail" :alt="post.title" />
-    </a>
+    <RouterLink :to="link">
+      <img
+        :src="thumbnail"
+        :alt="post.title"
+      />
+    </RouterLink>
 
     <h2>
-      <a :href="link">{{ post.title }}</a>
+      <RouterLink :to="link">{{ post.title }}</RouterLink>
     </h2>
     <p>{{ post.body }}</p>
     <!-- <p>{{ post.date }}</p> -->
