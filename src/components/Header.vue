@@ -11,7 +11,6 @@
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/blog">Blog</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
-      <RouterLink to="/post"></RouterLink>
     </nav>
   </header>
 
