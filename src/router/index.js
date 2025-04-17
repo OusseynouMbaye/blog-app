@@ -25,7 +25,7 @@ const router = createRouter({
       path: '/blog/:id',
       // name: 'blog-specific',
       // component: BlogSpecificView,
-      component: () => import('../views/BlogSpecific.vue'),
+      component: () => import('../views/SinglePostPage.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
