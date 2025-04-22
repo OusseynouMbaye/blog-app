@@ -18,7 +18,7 @@ import useFetch from '@/composable/useFetch';
 import PostForm from '@/components/PostForm.vue';
 
 const route = useRoute();
-const isModalOpen = ref(false);
+const isModalOpen = ref(null);
 
 const { data: post, status, error, update } = useFetch(
   computed(
@@ -38,7 +38,7 @@ const saveChanges = async (formData) => {
   try {
     const rawData = toRaw(formData);
     const updatedPost = await update(rawData);
-    isModalOpen.value = false;
+    isModalOpen.value = null;
   } catch (error) {
     console.error('Erreur lors de la sauvegarde:', error);
     alert('Une erreur est survenue lors de la sauvegarde');
