@@ -1,8 +1,11 @@
 <template>
     <div class="grid">
         <label :for="id">{{ label }}</label>
-        <textarea v-if="type === 'textarea'" :id="id" v-model='model'></textarea>
-        <input v-else :id="id" :type="type" v-model='model' />
+        <textarea v-if="type === 'textarea'" :id="id" :value="modelValue"
+            @input="$emit('update:modelValue', $event.target.value)" :required="required"
+            :disabled="disabled"></textarea>
+        <input v-else :id="id" :type="type" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
+            :required="required" :disabled="disabled" />
     </div>
 </template>
 
@@ -14,9 +17,21 @@ defineProps({
         type: String,
         default: 'text'
     },
+    modelValue: {
+        type: [String, Number],
+        required: true
+    },
+    required: {
+        type: Boolean,
+        default: false
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    }
 });
 
-const model = defineModel();
+defineEmits(['update:modelValue']);
 </script>
 
 <style scoped>

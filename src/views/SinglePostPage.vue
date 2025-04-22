@@ -7,12 +7,13 @@
       <button class="secondary" @click="openModal">Editer</button>
     </article>
 
-    <PostForm v-if="post" :post="post" :loading="status === 'loading'" v-model="isModalOpen" @submit="saveChanges" />
+    <PostForm v-if="post" :post="post" :loading="status === 'loading'" :status="status" :modelValue="isModalOpen"
+      @update:modelValue="isModalOpen = $event" @submit="saveChanges" />
   </div>
 </template>
 
 <script setup>
-import { computed, ref, toRaw } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import useFetch from '@/composable/useFetch';
 import PostForm from '@/components/PostForm.vue';
@@ -21,9 +22,7 @@ const route = useRoute();
 const isModalOpen = ref(false);
 
 const { data: post, status, error, update } = useFetch(
-  computed(
-    () => `https://jsonplaceholder.typicode.com/posts/${route.params.id}`
-  )
+  computed(() => `https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
 );
 
 const thumbnail = computed(
@@ -36,12 +35,10 @@ const openModal = () => {
 
 const saveChanges = async (formData) => {
   try {
-    const rawData = toRaw(formData);
-    const updatedPost = await update(rawData);
+    await update(formData);
     isModalOpen.value = false;
   } catch (error) {
     console.error('Erreur lors de la sauvegarde:', error);
-    alert('Une erreur est survenue lors de la sauvegarde');
   }
 };
 </script>

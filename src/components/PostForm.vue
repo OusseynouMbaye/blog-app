@@ -1,8 +1,11 @@
 <template>
   <Modal v-if="modelValue" :title="post?.id ? 'Modifier l\'article' : 'Créer un article'"
     @close="$emit('update:modelValue', false)">
+    <Alert v-if="status === 'error'" type="danger" @close="$emit('statusChange', 'idle')">
+      La mise à jour a échoué. Veuillez réessayer.
+    </Alert>
     <form @submit.prevent="handleSubmit">
-      <Field id="title" label="Titre" v-model="formData.title" :required="true" :disabled="loading" />
+      <Field id="title" label="Titre" type="text" v-model="formData.title" :required="true" :disabled="loading" />
       <Field id="body" label="Contenu" type="textarea" v-model="formData.body" :required="true" :disabled="loading" />
       <div class="grid">
         <button type="submit" :aria-busy="loading" :disabled="loading">{{ submitLabel }}</button>
@@ -18,11 +21,12 @@
 import { ref, watch } from 'vue';
 import Modal from './Modal.vue';
 import Field from './Field.vue';
+import Alert from './Alert.vue';
 
 const props = defineProps({
   post: {
     type: Object,
-    required: true,
+    default: () => ({})
   },
   submitLabel: {
     type: String,
@@ -35,10 +39,14 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  status: {
+    type: String,
+    default: 'idle'
   }
 });
 
-const emit = defineEmits(['submit', 'cancel', 'update:modelValue']);
+const emit = defineEmits(['submit', 'update:modelValue', 'statusChange']);
 
 const formData = ref({ ...props.post });
 
@@ -56,7 +64,6 @@ const handleSubmit = () => {
 
 const handleCancel = () => {
   emit('update:modelValue', false);
-  emit('cancel');
 };
 </script>
 
