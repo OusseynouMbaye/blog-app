@@ -2,14 +2,8 @@
   <Modal v-if="modelValue" :title="post?.id ? 'Modifier l\'article' : 'Créer un article'"
     @close="$emit('update:modelValue', false)">
     <form @submit.prevent="handleSubmit">
-      <div class="grid">
-        <label for="title"> Titre </label>
-        <input id="title" type="text" v-model="formData.title" required :disabled="loading" />
-      </div>
-      <div class="grid">
-        <label for="body">Contenu</label>
-        <textarea id="body" v-model="formData.body" required :disabled="loading"></textarea>
-      </div>
+      <Field id="title" label="Titre" v-model="formData.title" :required="true" :disabled="loading" />
+      <Field id="body" label="Contenu" type="textarea" v-model="formData.body" :required="true" :disabled="loading" />
       <div class="grid">
         <button type="submit" :aria-busy="loading" :disabled="loading">{{ submitLabel }}</button>
         <button type="button" class="secondary" @click="handleCancel" :disabled="loading">
@@ -23,6 +17,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import Modal from './Modal.vue';
+import Field from './Field.vue';
 
 const props = defineProps({
   post: {
