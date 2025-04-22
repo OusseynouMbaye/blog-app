@@ -4,16 +4,15 @@
     <form @submit.prevent="handleSubmit">
       <div class="grid">
         <label for="title"> Titre </label>
-        <input id="title" type="text" v-model="formData.title" required />
+        <input id="title" type="text" v-model="formData.title" required :disabled="loading" />
       </div>
       <div class="grid">
         <label for="body">Contenu</label>
-        <textarea id="body" v-model="formData.body" required></textarea>
-
+        <textarea id="body" v-model="formData.body" required :disabled="loading"></textarea>
       </div>
       <div class="grid">
-        <button type="submit">{{ submitLabel }}</button>
-        <button type="button" class="secondary" @click="handleCancel">
+        <button type="submit" :aria-busy="loading" :disabled="loading">{{ submitLabel }}</button>
+        <button type="button" class="secondary" @click="handleCancel" :disabled="loading">
           Annuler
         </button>
       </div>
@@ -38,6 +37,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  loading: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const emit = defineEmits(['submit', 'cancel', 'update:modelValue']);

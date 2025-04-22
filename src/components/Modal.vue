@@ -3,12 +3,7 @@
     <article>
       <header>
         <h2>{{ title }}</h2>
-        <a
-          href="#close"
-          aria-label="Close"
-          class="close"
-          @click.prevent="$emit('close')"
-        ></a>
+        <button type="button" aria-label="Close" class="close" @click.prevent="emits('close')"></button>
       </header>
       <section class="content">
         <slot></slot>

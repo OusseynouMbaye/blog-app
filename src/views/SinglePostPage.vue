@@ -7,7 +7,7 @@
       <button class="secondary" @click="openModal">Editer</button>
     </article>
 
-    <PostForm v-if="post" :post="post" v-model="isModalOpen" @submit="saveChanges" />
+    <PostForm v-if="post" :post="post" :loading="status === 'loading'" v-model="isModalOpen" @submit="saveChanges" />
   </div>
 </template>
 
