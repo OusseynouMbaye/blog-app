@@ -1,10 +1,7 @@
 <template>
   <article class="post-card">
     <RouterLink :to="link">
-      <img
-        :src="thumbnail"
-        :alt="post.title"
-      />
+      <img :src="thumbnail" :alt="post.title" />
     </RouterLink>
 
     <h2>
@@ -17,11 +14,17 @@
 
 <script setup>
 import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
 const props = defineProps({
   post: Object,
 });
 
-const link = computed(() => `/blog/${props.post.id}`);
+// const link = computed(() => `/blog/${props.post.id}`);
+
+const link = computed(() => ({
+  name: 'posts.show',
+  params: { id: props.post.id }
+}));
 
 const thumbnail = computed(
   () => `https://picsum.photos/id/${props.post.id}/280/180`

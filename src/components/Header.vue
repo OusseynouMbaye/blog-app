@@ -1,15 +1,11 @@
 <template>
   <header class="header">
     <div>
-      <a
-        href="#"
-        class="header__logo"
-        >Blog App</a
-      >
+      <a href="#" class="header__logo">Blog App</a>
     </div>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/blog">Blog</RouterLink>
+      <RouterLink :to="{ name: 'posts.index' }">Blog</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
     </nav>
   </header>

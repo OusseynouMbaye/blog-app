@@ -13,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/blog',
-      name: 'blog',
+      name: 'posts.index',
       component: BlogView,
     },
     {
@@ -23,7 +23,7 @@ const router = createRouter({
     },
     {
       path: '/blog/:id',
-      // name: 'blog-specific',
+      name: 'posts.show',
       // component: BlogSpecificView,
       component: () => import('../views/SinglePostPage.vue'),
     },
