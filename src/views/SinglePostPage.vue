@@ -13,17 +13,25 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import useFetch from '@/composable/useFetch';
 import PostForm from '@/components/PostForm.vue';
 
 const route = useRoute();
+const router = useRouter();
 const isModalOpen = ref(false);
 
 const { data: post, status, error, update } = useFetch(
   computed(() => `https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
 );
+
+
+watch([status], ([newStatus]) => {
+  if (newStatus === 'error') {
+    router.push({ name: 'not-found' });
+  }
+});
 
 const thumbnail = computed(
   () => `https://picsum.photos/id/${post.value?.id}/800/600`
