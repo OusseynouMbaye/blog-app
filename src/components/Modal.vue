@@ -1,5 +1,5 @@
 <template>
-  <dialog open>
+  <dialog ref='dialog'>
     <article>
       <header>
         <h2>{{ title }}</h2>
@@ -13,11 +13,18 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+const dialog = ref();
+
 defineProps({
   title: String,
 });
 
 const emits = defineEmits(['close']);
+
+onMounted(() => {
+  dialog.value.show();
+})
 </script>
 
 <style scoped>
