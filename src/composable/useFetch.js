@@ -22,15 +22,19 @@ export default function useFetch(url, options = {}) {
 
       const response = await fetch(urlValue, fetchOptions);
       if (!response.ok) {
-        throw new Error(`Failed to ${method} data`);
+        throw new Error(`Failed to ${method} data: ${response.status}`);
       }
       const result = await response.json();
+      if (!result) {
+        throw new Error('No data found');
+      }
       data.value = result;
       status.value = 'idle';
       return result;
     } catch (e) {
       error.value = e.message;
       status.value = 'error';
+      data.value = null;
       throw e;
     }
   }
