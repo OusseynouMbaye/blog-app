@@ -4,7 +4,7 @@ services:
   app-dev:
     build:
       context: .
-      target: build-stage
+      target: development
     volumes:
       - .:/app
       - /app/node_modules
@@ -12,12 +12,12 @@ services:
       - '8080:8080'
     environment:
       - NODE_ENV=development
-    command: npm run dev
+      - VUE_APP_API_URL=http://localhost:3000
 
   app-test:
     build:
       context: .
-      target: build-stage
+      target: development
     environment:
       - NODE_ENV=test
     command: npm run test
@@ -25,16 +25,16 @@ services:
   app-demo:
     build:
       context: .
+      target: production
     ports:
       - '8081:80'
     environment:
       - NODE_ENV=demo
-    depends_on:
-      - app-dev
 
   app-prod:
     build:
       context: .
+      target: production
     ports:
       - '80:80'
     environment:
