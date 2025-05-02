@@ -25,7 +25,12 @@ jobs:
           echo "Current directory: $(pwd)"
           ls -la
           docker-compose config
-          docker-compose run app-test
+          docker-compose build app-test
+          docker-compose run --rm app-test || {
+            echo "Tests failed"
+            docker-compose logs app-test
+            exit 1
+          }
 
   build-and-push:
     needs: test
