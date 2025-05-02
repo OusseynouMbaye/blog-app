@@ -17,9 +17,10 @@ services:
   app-test:
     build:
       context: .
-      target: development
+      target: test
     environment:
       - NODE_ENV=test
+      - CI=true
     command: npm run test
 
   app-demo:

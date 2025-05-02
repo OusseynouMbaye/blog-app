@@ -15,6 +15,14 @@ COPY . .
 EXPOSE 8080
 CMD ["npm", "run", "dev"]
 
+# Test stage
+FROM node:18-alpine as test
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "run", "test"]
+
 # Production stage
 FROM nginx:stable-alpine as production
 COPY --from=build-stage /app/dist /usr/share/nginx/html

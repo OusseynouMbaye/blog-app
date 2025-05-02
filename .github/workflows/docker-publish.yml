@@ -20,15 +20,21 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose-plugin
+
       - name: Run tests
         run: |
           echo "Current directory: $(pwd)"
           ls -la
-          docker-compose config
-          docker-compose build app-test
-          docker-compose run --rm app-test || {
+          docker compose version
+          docker compose config
+          docker compose build app-test
+          docker compose run --rm app-test || {
             echo "Tests failed"
-            docker-compose logs app-test
+            docker compose logs app-test
             exit 1
           }
 
